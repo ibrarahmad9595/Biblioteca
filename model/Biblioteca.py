@@ -9,12 +9,9 @@ rip = Ripiano()
 
 class Biblioteca:
     def __init__(self):
-        piano1 = []
-        piano1.append(Piano())
-        piano2 = []
-        piano2.append(Piano())
-        piano3 = []
-        piano3.append(Piano())
+        piano1 = Piano()
+        piano2 = Piano()
+        piano3 = Piano()
         self.piani = [piano1, piano2, piano3]
 
     def getPiano(self, piano):
@@ -23,14 +20,14 @@ class Biblioteca:
     # ******************* R2: Inserimento libro nella biblioteca *******************
     def addBookToBiblioteca(self, piano, scaffale, ripiano, titolo, author):
         p = self.piani[piano - 1]
-        s = p[0].scaffale["SC" + str(scaffale)]
+        s = p.scaffale["SC" + str(scaffale)]
         r = s.ripiano[ripiano-1]
         r.libro.append(Libro(titolo,author))
         print("a")
 
     def contiente(self, piano, scaffale, ripiano):
         pian = self.piani[piano - 1]
-        scaffal = pian[0].scaffale["SC" + str(scaffale)]
+        scaffal = pian.scaffale["SC" + str(scaffale)]
         r = scaffal.ripiano[ripiano - 1]
         if len(r.libro)==0:
             print("Non c'e libro")
@@ -42,7 +39,7 @@ class Biblioteca:
     # ******************* R3: Stampa contenuto scaffale *******************
     def getLibri(self, piano, scaffale):
         pian = self.piani[piano]
-        scaffal = pian[0].scaffale["SC" + str(scaffale)]
+        scaffal = pian.scaffale["SC" + str(scaffale)]
         for index,x in enumerate(scaffal.ripiano):
             if len(scaffal.ripiano[x].libro) == 0:
                 print("Non c'e libro in ripiano {}".format(index+1))
@@ -62,15 +59,15 @@ class Biblioteca:
             if index == pianoo:
                 pianoo = pianoo + 1
                 count_scaff = 0
-                for s in x[0].scaffale:
+                for s in x.scaffale:
                     count_rip = 0
                     count_scaff =count_scaff+1
                     if s=='SC'+str(count_scaff):
-                            for r in x[0].scaffale['SC' + str(count_scaff)].ripiano:
+                            for r in x.scaffale['SC' + str(count_scaff)].ripiano:
                                 if r==count_rip:
                                     if count_rip < 5:
                                         count_rip = count_rip + 1
-                                    for l in x[0].scaffale['SC' + str(count_scaff)].ripiano[count_rip].libro:
+                                    for l in x.scaffale['SC' + str(count_scaff)].ripiano[count_rip].libro:
                                         count_rip = count_rip + 1
                                         if titolo == l.titolo and autore ==l.autore:
                                             piano = pianoo
