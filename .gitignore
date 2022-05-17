@@ -1,0 +1,11 @@
+/venv
+.idea
+Esercizio2_Biblioteca.html
+!/model
+/model/*
+!/model/Biblioteca.py
+!/model/GestioneBiblio.py
+!/model/Libro.py
+!/model/Piano.py
+!/model/Ripiano.py
+!/model/Scaffale.py
