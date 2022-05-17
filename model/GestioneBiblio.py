@@ -37,4 +37,3 @@ class GestioneBiblio:
             else:
                 print("You must only select either 1, 2, 3 or 4")
                 print("Please try again")
-                # self.start()

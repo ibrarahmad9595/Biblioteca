@@ -3,10 +3,6 @@ from model.Scaffale import Scaffale
 from model.Ripiano import Ripiano
 from model.Libro import Libro
 
-pia = Piano()
-scaf = Scaffale()
-rip = Ripiano()
-
 class Biblioteca:
     def __init__(self):
         piano1 = Piano()
@@ -14,16 +10,13 @@ class Biblioteca:
         piano3 = Piano()
         self.piani = [piano1, piano2, piano3]
 
-    def getPiano(self, piano):
-        return piano
-
     # ******************* R2: Inserimento libro nella biblioteca *******************
+
     def addBookToBiblioteca(self, piano, scaffale, ripiano, titolo, author):
         p = self.piani[piano - 1]
         s = p.scaffale["SC" + str(scaffale)]
-        r = s.ripiano[ripiano-1]
-        r.libro.append(Libro(titolo,author))
-        print("a")
+        r = s.ripiano[ripiano - 1]
+        r.libro.append(Libro(titolo, author, r))
 
     def contiente(self, piano, scaffale, ripiano):
         pian = self.piani[piano - 1]
@@ -49,33 +42,15 @@ class Biblioteca:
                     print("   ",l.titolo, ",", l.autore);
 
     # ******************* R4: Stampa posizione libro *******************
-    def lib(self,titolo,autore):
-        libro = self.cerca(titolo,autore)
+        # Refer Python file libro
 
     # ******************* R5: Ricerca di un libro *******************
     def cerca(self, titolo, autore):
-        pianoo = 0
-        for index,x in enumerate(self.piani):
-            if index == pianoo:
-                pianoo = pianoo + 1
-                count_scaff = 0
-                for s in x.scaffale:
-                    count_rip = 0
-                    count_scaff =count_scaff+1
-                    if s=='SC'+str(count_scaff):
-                            for r in x.scaffale['SC' + str(count_scaff)].ripiano:
-                                if r==count_rip:
-                                    if count_rip < 5:
-                                        count_rip = count_rip + 1
-                                    for l in x.scaffale['SC' + str(count_scaff)].ripiano[count_rip].libro:
-                                        count_rip = count_rip + 1
-                                        if titolo == l.titolo and autore ==l.autore:
-                                            piano = pianoo
-                                            scaffale = 'SC'+str(count_scaff)
-                                            ripiano = count_rip
-                                            print("\n--------Ho trovato un libro--------")
-                                            print("Piano: {}, Scaffale: {}, Ripiano: {}, Titolo di libro: {}, Autore di libro: {}"
-                                                  .format(piano,scaffale,ripiano,l.titolo,l.autore))
-
-    # ******************* R6: Interfaccia utente *******************
-
+        for index_piano, piano in enumerate(self.piani):
+            for index_scaf, scaffale in enumerate(dict(piano.scaffale)):
+                for index_rip, ripiano in enumerate(dict(piano.scaffale[scaffale].ripiano)):
+                    for libro in piano.scaffale[scaffale].ripiano[ripiano].libro:
+                        if libro.titolo == titolo and libro.autore == autore:
+                            print("\n--------Ho trovato un libro--------")
+                            print("Piano: {}, Scaffale: {}, Ripiano: {}, Titolo di libro: {}, Autore di libro: {}"
+                                  .format(index_piano+1,index_scaf+1,index_rip+1,libro.titolo,libro.autore))

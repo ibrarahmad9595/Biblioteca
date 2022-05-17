@@ -3,10 +3,9 @@ class Piano:
     def __init__(self):
         self.scaffale = {}
         for x in range(1,31):
-            self.scaffale["SC{}".format(x)] = Scaffale()
+            self.scaffale["SC{}".format(x)] = Scaffale(self)
 
-    def getScaffale(self, scaffale):
-        return scaffale
+
 
 
 

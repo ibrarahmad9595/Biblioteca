@@ -4,8 +4,7 @@ from model.Piano import Piano
 from model.Libro import Libro
 
 # ****************** R1: Dati del Libro ******************
-
-libro2 = Libro("java","James Gosling")
+libro2 = Libro("java","James Gosling", 3)
 titolo_autore2 = libro2.getTitoloAutore();
 print(titolo_autore2)
 
@@ -23,10 +22,10 @@ lib = biblioteca.getLibri(1,2);
 
 
 print("\n******************* R4: Stampa posizione libro *******************")
-biblioteca.lib("Python","Guido van rossow");
+libro = biblioteca.piani[1].scaffale['SC2'].ripiano[2].libro[0]
+rrr = libro.getRipiano()
+ppp = libro.getPiano()
+sss = libro.getScaffale()
 
 print("\n******************* R5: Ricerca di un libro *******************")
 biblioteca.cerca("Python","Guido van rossow")
-
-print("\n******************* R6: Interfaccia utente *******************")
-GestioneBiblio.start("d")
